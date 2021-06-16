@@ -1,13 +1,12 @@
-import React, { Fragment } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Main from '../pages/main/main';
 import SignIn from '../pages/signin/signin';
 import MyList from '../pages/mylist/mylist';
-import Film from "../pages/film/film";
-import Review from "../pages/review/review";
-import Player from "../pages/player/player";
+import Film from '../pages/film/film';
+import Review from '../pages/review/review';
+import Player from '../pages/player/player';
 export default App;
 
 function App(props) {
@@ -37,7 +36,7 @@ function App(props) {
         />
       </Switch>
     </BrowserRouter>
-  )
+  );
 }
 
 App.propTypes = {
