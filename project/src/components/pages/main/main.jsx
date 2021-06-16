@@ -1,11 +1,11 @@
 import React from 'react';
-import Card from '../card/card';
+import Card from '../../card/card';
 import PropTypes from 'prop-types';
 export default Main;
 function Main(props) {
   const {cards, name, genre, year} = props;
   return (
-    <div>
+    <fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -145,7 +145,7 @@ function Main(props) {
           </div>
         </footer>
       </div>
-    </div>
+    </fragment>
   );
 }
 
