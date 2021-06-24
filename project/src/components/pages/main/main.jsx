@@ -1,9 +1,15 @@
 import React from 'react';
-import Card from '../../card/card';
+import FilmList from '../../film-list/film-list';
+import filmProp from '../../card/card.prop';
 import PropTypes from 'prop-types';
+//import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../../const';
 export default Main;
+
 function Main(props) {
-  const {cards, name, genre, year} = props;
+  const films = props.films;
+  const {name, genre, year} = props;
   return (
     <fragment>
       <div className="visually-hidden">
@@ -53,7 +59,9 @@ function Main(props) {
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <Link to={AppRoute.MY_LIST}>
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </Link>
               </div>
             </li>
             <li className="user-block__item">
@@ -126,7 +134,9 @@ function Main(props) {
             </li>
           </ul>
           <div className="catalog__films-list">
-            {cards.map((i) => <Card key={i} />)}
+            {
+              <FilmList films={films}/>
+            }
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -150,7 +160,7 @@ function Main(props) {
 }
 
 Main.propTypes = {
-  cards: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(filmProp).isRequired,
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
