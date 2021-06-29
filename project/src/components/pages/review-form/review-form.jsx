@@ -2,33 +2,27 @@ import React from 'react';
 import {MAX_RATING} from '../../../const';
 
 function ReviewForm() {
-  const [review, setReview] = React.useState({
-    comment: '',
-    rating: null,
-  });
-
-  const {comment, rating} = review;
-
-  const ratingValues = new Array(MAX_RATING).fill().map((el, index) => index + 1).reverse();
+  const [comment, setComment] = React.useState('');
+  const [rating, setRating] = React.useState(null);
 
   const textChangeHandler = (evt) => {
-    setReview({
-      ...review,
-      comment: evt.target.value,
-    });
+    setComment(evt.target.value);
   };
   const ratingChangeHandler = (evt) => {
-    setReview({
-      ...review,
-      rating: evt.target.value,
-    });
+    setRating(evt.target.value);
   };
+
+  const ratingValues = [];
+  for (let i = 1; i <= MAX_RATING; i++) {
+    ratingValues.push(i);
+  }
+
+  ratingValues.reverse();
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
-
             {
               ratingValues.map((value) => (
                 <React.Fragment key={value}>
