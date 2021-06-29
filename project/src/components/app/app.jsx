@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import {AppRoute} from '../../const';
 import PropTypes from 'prop-types';
 import Main from '../pages/main/main';
 import SignIn from '../pages/signin/signin';
@@ -7,21 +8,45 @@ import MyList from '../pages/mylist/mylist';
 import Film from '../pages/film/film';
 import Review from '../pages/review/review';
 import Player from '../pages/player/player';
-export default App;
+import filmProp from '../card/card.prop';
+import {getFilm} from '../../utils/utils';
+
 
 function App(props) {
-  const {cards, name, genre, year} = props;
+  const {films, name, genre, year} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact >
-          <Main cards={cards} name={name} genre={genre} year={year} />
+          <Main films={films} name={name} genre={genre} year={year} />
         </Route>
         <Route path="/login" exact component={SignIn} />
-        <Route path="/mylist" exact component={MyList} />
-        <Route path="/film/:id" exact component={Film} />
-        <Route path="/film/:id/review" exact component={Review} />
-        <Route path="/player/:id" exact component={Player} />
+        <Route path="/mylist" exact >
+          <MyList films={films} />
+        </Route>
+        <Route
+          exact path={`${AppRoute.FILM}/:id`}
+          render={(data) => (
+            <Film
+              film={getFilm(films, data.match.params.id)}
+              films={films}
+            />)}
+        />
+        <Route
+          exact path={`${AppRoute.FILM}/:id/review`}
+          render={(data) => (
+            <Review
+              film={getFilm(films, data.match.params.id)}
+            />)}
+        />
+        <Route
+          exact path={`${AppRoute.PLAYER}/:id`}
+          render={(data) => (
+            <Player
+              film={getFilm(films, data.match.params.id)}
+            />
+          )}
+        />
         <Route
           render={() => (
             <Fragment>
@@ -40,9 +65,10 @@ function App(props) {
 }
 
 App.propTypes = {
-  cards: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(filmProp).isRequired,
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
 };
 
+export default App;
