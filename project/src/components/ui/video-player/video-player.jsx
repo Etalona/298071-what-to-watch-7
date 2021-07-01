@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
-import { previewVideoSizes, PREVIEW_VIDEO_DELAY } from '../../const';
+import { previewVideoSizes, PREVIEW_VIDEO_DELAY } from '../../../const';
 
 function VideoPlayer(props) {
   const {src, posterUrl, isPlaying} = props;
