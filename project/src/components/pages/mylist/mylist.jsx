@@ -6,7 +6,7 @@ import filmProp from '../../ui/card/card.prop';
 function MyList (props) {
   const {films} = props;
   return (
-    <fragment>
+    <React.Fragment>
       <div className="visually-hidden">
 
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -82,7 +82,7 @@ function MyList (props) {
           </div>
         </footer>
       </div>
-    </fragment>
+    </React.Fragment>
   );
 }
 

@@ -11,7 +11,7 @@ function Main(props) {
   const films = props.films;
   const {name, genre, year} = props;
   return (
-    <fragment>
+    <React.Fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -155,7 +155,7 @@ function Main(props) {
           </div>
         </footer>
       </div>
-    </fragment>
+    </React.Fragment>
   );
 }
 
