@@ -6,14 +6,15 @@ import Main from '../pages/main/main';
 import SignIn from '../pages/signin/signin';
 import MyList from '../pages/mylist/mylist';
 import Film from '../pages/film/film';
-import Review from '../pages/review/review';
+import AddReview from '../pages/add-review/add-review';
 import Player from '../pages/player/player';
-import filmProp from '../card/card.prop';
+import filmProp from '../ui/card/card.prop';
+import reviewProp from '../ui/review/review.prop';
 import {getFilm} from '../../utils/utils';
 
 
 function App(props) {
-  const {films, name, genre, year} = props;
+  const {films,reviews, name, genre, year} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -30,12 +31,13 @@ function App(props) {
             <Film
               film={getFilm(films, data.match.params.id)}
               films={films}
+              reviews={reviews}
             />)}
         />
         <Route
           exact path={`${AppRoute.FILM}/:id/review`}
           render={(data) => (
-            <Review
+            <AddReview
               film={getFilm(films, data.match.params.id)}
             />)}
         />
@@ -66,6 +68,7 @@ function App(props) {
 
 App.propTypes = {
   films: PropTypes.arrayOf(filmProp).isRequired,
+  reviews: PropTypes.arrayOf(reviewProp).isRequired,
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,

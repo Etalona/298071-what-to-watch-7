@@ -1,14 +1,17 @@
 import React from 'react';
-import filmProp from '../../card/card.prop';
-import FilmList from '../../film-list/film-list';
+import filmProp from '../../ui/card/card.prop';
+import reviewProp from '../../ui/review/review.prop';
+import FilmList from '../../ui/film-list/film-list';
+import FilmTabs from '../../ui/film-tabs/film-tabs';
 import PropTypes from 'prop-types';
 import {useHistory} from 'react-router';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const';
+import {AppRoute, MAX_SIMILAR_FILMS_COUNT} from '../../../const';
+import { getSimilarFilms } from '../../../utils/utils';
 
 function Film(props) {
-  const {film, films} = props;
-  const {name, posterImage, backgroundImage, backgroundColor, genre, released, rating, scoresCount, description, director, starring, id} = film;
+  const {film, films, reviews} = props;
+  const {name, posterImage, backgroundImage, backgroundColor, genre, released, id} = film;
 
   const history = useHistory();
 
@@ -110,35 +113,11 @@ function Film(props) {
               <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+            <FilmTabs
+              film={film}
+              reviews={reviews}
+            />
 
-              <div className="film-rating">
-                <div className="film-rating__score">{rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{`${scoresCount} ratings`}</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{description}</p>
-                <p className="film-card__director"><strong>{director}</strong></p>
-                <p className="film-card__starring"><strong>{`Starring: ${starring.join(', ')}`}</strong></p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -147,7 +126,7 @@ function Film(props) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           {
-            <FilmList films={films.slice(1, 5)}/>
+            <FilmList films={getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILMS_COUNT)}/>
           }
         </section>
 
@@ -171,6 +150,7 @@ function Film(props) {
 Film.propTypes = {
   film: filmProp,
   films: PropTypes.arrayOf(filmProp).isRequired,
+  reviews: PropTypes.arrayOf(reviewProp).isRequired,
 };
 
 export default Film;

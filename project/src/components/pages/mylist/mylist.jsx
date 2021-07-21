@@ -1,7 +1,7 @@
 import React from 'react';
-import FilmList from '../../film-list/film-list';
+import FilmList from '../../ui/film-list/film-list';
 import PropTypes from 'prop-types';
-import filmProp from '../../card/card.prop';
+import filmProp from '../../ui/card/card.prop';
 
 function MyList (props) {
   const {films} = props;
