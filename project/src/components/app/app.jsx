@@ -6,7 +6,7 @@ import Main from '../pages/main/main';
 import SignIn from '../pages/signin/signin';
 import MyList from '../pages/mylist/mylist';
 import Film from '../pages/film/film';
-import Review from '../ui/review/review';
+import AddReview from '../pages/add-review/add-review';
 import Player from '../pages/player/player';
 import filmProp from '../ui/card/card.prop';
 import reviewProp from '../ui/review/review.prop';
@@ -37,7 +37,7 @@ function App(props) {
         <Route
           exact path={`${AppRoute.FILM}/:id/review`}
           render={(data) => (
-            <Review
+            <AddReview
               film={getFilm(films, data.match.params.id)}
             />)}
         />

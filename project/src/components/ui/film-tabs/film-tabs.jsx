@@ -34,7 +34,7 @@ const renderFilmTabs = (film, reviews, activeTab) => {
 };
 
 function FilmTabs(props) {
-  const [activeTab, setAtiveTab] = useState(FilmTabsNames.OVERVIEW);
+  const [activeTab, setActiveTab] = useState(FilmTabsNames.OVERVIEW);
   const {film, reviews}  = props;
 
   return (
@@ -44,7 +44,7 @@ function FilmTabs(props) {
         <FilmTabsList
           activeTab={activeTab}
           tabClickHandler={(tab) => {
-            setAtiveTab(tab);
+            setActiveTab(tab);
           }}
         />
       </nav>
