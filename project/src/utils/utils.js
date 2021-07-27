@@ -29,3 +29,5 @@ export const humanizeDuration = (minutes) => {
   const durationInHours = durationData.get('hours') !== 0 ? `${durationData.get('hours')}h` : '';
   return `${durationInHours} ${durationData.get('minutes')}m`;
 };
+
+export const makeItemsUnique = (items) => [...new Set(items)];
