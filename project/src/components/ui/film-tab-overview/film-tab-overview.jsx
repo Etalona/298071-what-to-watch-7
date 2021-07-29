@@ -4,7 +4,7 @@ import { MAX_ACTORS_COUNT,  RatingLevels } from '../../../const';
 import { transformRating } from '../../../utils/utils';
 
 const getRatingLevel = (rating) => {
-  const thresholds = Object.keys( RatingLevels);
+  const thresholds = Object.keys(RatingLevels).map((el) => +el);
   const currentThreshold = thresholds.find((threshold) => rating < threshold);
 
   return RatingLevels[currentThreshold];

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import Card from '../card/card';
 import PropTypes from 'prop-types';
+
+import Card from '../card/card';
 import filmProp from '../card/card.prop';
 
 function FilmList(props) {

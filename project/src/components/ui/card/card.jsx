@@ -1,13 +1,15 @@
 import React from 'react';
-import filmProp from './card.prop';
-import VideoPlayer from '../video-player/video-player';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+
+import VideoPlayer from '../video-player/video-player';
+import filmProp from './card.prop';
 import {AppRoute} from '../../../const';
 
 function Card(props) {
   const {film, mouseEnterHandler, mouseLeaveHandler, isActive} = props;
   const {name, previewImage, id, previewVideoLink} = film;
+
   return (
     <article
       className="small-film-card catalog__films-card"

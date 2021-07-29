@@ -1,6 +1,7 @@
 import React from 'react';
 import reviewProp from './review.prop';
 import { transformRating, humanizeDate } from '../../../utils/utils';
+import { DateFormats } from '../../../const';
 
 function Review(props) {
   const {userName, rating, comment, date} = props.review;
@@ -14,9 +15,9 @@ function Review(props) {
           <cite className="review__author">{userName}</cite>
           <time
             className="review__date"
-            dateTime={humanizeDate(date, 'YYYY-MM-DD')}
+            dateTime={humanizeDate(date, DateFormats.DATE_TIME)}
           >
-            {humanizeDate(date, 'MMMM DD, YYYY')}
+            {humanizeDate(date, DateFormats.HUMANIZED)}
           </time>
         </footer>
       </blockquote>
